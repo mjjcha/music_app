@@ -1,0 +1,20 @@
+.form {
+  text-align: center;
+}
+
+#list {
+  text-align: center;
+}
+
+.list-top h2 {
+  float: left;
+}
+
+.list-top a {
+  float: right;
+}
+
+body h1 {
+  text-align: center;
+}
+

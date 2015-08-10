@@ -1,0 +1,14 @@
+<div class="list-top">
+  <h2><a href="/">Music List</a></h2><br>
+  <a href="/music/new">Suggest some new music!</a><br>
+  <a href="/">Go back to Home</a>
+</div>
+<hr />
+
+<div id="list">
+  <% @music.each do |music| %>
+    <a href="/music/<%= music.id %>"><h4><%= music.author %></h4></a>
+    <p><%= music.song_title %><p>
+  <% end %>
+</div>
+
