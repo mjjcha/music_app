@@ -1,20 +1,55 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Music</a></h1>
+    </li>
+  </ul>
 
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="active"><a href="music">Music List</a></li>
+      <li class="active"><a href="music/new">Add Music</a></li>
+    </ul>
+  </section>
+</nav>
 
-<form class="form" method="post" action="/music">
- <h2>Add some new music to the list!</h2> 
+<% if @music && @music.errors.any? %>
   <div>
-    <label name="author">Author:</label>
-    <input type="text" name="author" placeholder="Your name">
-  </div><br>
+    <strong>Some issues with your message, please fix them:</strong>
+    <ul>
+      <% @music.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 
-  <div>
-    <label name="song_title">Song Title:</label>
-    <input type="text" name="song_title" placeholder="Your favourite song">
+<% end %>
+
+<h2>Add some new music to the list!</h2>
+
+<form class="form" method="post" action="/music"> 
+  <div class="row">
+    <div class="large-9 columns">
+      <label name="author">Author</label>
+      <input type="text" name="author" placeholder="Your name" value="<%= @music && @music.author %>">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-9 columns">
+      <label name="song_title">Song Title</label>
+      <input type="text" name="song_title" placeholder="Your favourite song" value="<%= @music && @music.song_title %>">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="large-9 columns">
+      <label name="url">URL</label>
+      <input type="text" name="url" placeholder="Add an URL of your choice" value="<%= @music && @music.url %>">
+    </div>
   </div>
 
   <div>
     <input type="submit" value="Submit">
   </div>
-
-
 </form>

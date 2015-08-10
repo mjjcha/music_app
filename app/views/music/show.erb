@@ -1,12 +1,33 @@
-<h2><%= @music.song_title%></h2>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Music</a></h1>
+    </li>
+  </ul>
 
-<p>
-  Author: <%= @music.author %>
-</p>
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="active"><a href="music">Music List</a></li>
+      <li class="active"><a href="music/new">Add Music</a></li>
+    </ul>
+  </section>
+</nav>
 
-<p>
-  created at: <%= @music.created_at %>
-</p>
 
-<a href="/music">Back to list</a><br>
-<a href="/">Back home</a>
+
+
+<div class="details">
+  <h2><%= @music.song_title%></h2>
+  <br>
+  <p>
+    Submitted by: <%= @music.author %>
+  </p>
+  <p>
+    URL: <%= @music.url %>
+  </p>
+
+  <p>
+    Created at: <%= @music.created_at %>
+  </p>
+</div>
+

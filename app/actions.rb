@@ -15,7 +15,8 @@ end
 post '/music' do
   @music = Music.new(
       author: params[:author],
-      song_title: params[:song_title]
+      song_title: params[:song_title],
+      url: params[:url]
   )
   if @music.save
     redirect '/music'
