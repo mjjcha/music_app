@@ -6,11 +6,61 @@
   </ul>
 
   <section class="top-bar-section">
+    <ul class="left">
+      <li class="active"><a href="/music">Music List</a></li>
+      <li class="active"><a href="/music/new">Add Music</a></li>
+    </ul>
     <ul class="right">
-      <li class="active"><a href="music">Music List</a></li>
-      <li class="active"><a href="music/new">Add Music</a></li>
+      <% if current_user %>
+        <li class="active"><a href="/logout">Log Out</a></li>
+      <% else %>
+        <li class="active"><a href="/login">Log In</a></li>        
+      <% end %>
+      <li class="active"><a href="/signup">Sign Up</a></li>
     </ul>
   </section>
 </nav>
 
+<div id="list">
+  <h4><%= @music.author %></h4>
+  <p><%= @music.song_title %><p>
+</div>
 
+<% if @music && @music.errors.any? %>
+  <div>
+    <strong>Some issues with your message, please fix them:</strong>
+    <ul>
+      <% @music.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form class="form" method="post" action="/music"> 
+  <div class="row">
+    <div class="medium-offset-4 medium-4 columns">
+      <label name="author"></label>
+      <input type="text" name="author" placeholder="Your name">
+    </div>
+    <div class="medium-4 columns"></div>
+  </div>
+
+  <div class="row">
+    <div class="medium-offset-4 medium-4 columns">
+      <label name="song_title"></label>
+      <input type="text" name="song_title" placeholder="Your favourite song">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="medium-offset-4 medium-4 columns">
+      <label name="url"></label>
+      <input type="text" name="url" placeholder="Add an URL of your choice">
+    </div>
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form> 

@@ -21,11 +21,23 @@
   </section>
 </nav>
 
-<div id="list">
-  <% @music.each do |music| %>
-    <a href="/music/<%= music.id %>"><h4><%= music.author %></h4></a>
-    <p><%= music.song_title %><p>
-    <p><%= music.url %></p>
-  <% end %>
-</div>
+<form class="form" method="post" action="/profile">
+  <div class="row">Log In</div> 
+  <div class="row">
+    <div class="medium-offset-4 medium-4 columns">
+      <label name="email"></label>
+      <input type="text" name="email" placeholder="address@email.com">
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="medium-offset-4 medium-4 columns">
+      <label name="password"></label>
+      <input type="password" name="password" placeholder="Password">
+    </div>
+  </div>
+  
+   <div>
+    <input type="submit" value="Log In">
+  </div>
+</form>

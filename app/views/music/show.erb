@@ -6,21 +6,27 @@
   </ul>
 
   <section class="top-bar-section">
+    <ul class="left">
+      <li class="active"><a href="/music">Music List</a></li>
+      <li class="active"><a href="/music/new">Add Music</a></li>
+    </ul>
     <ul class="right">
-      <li class="active"><a href="music">Music List</a></li>
-      <li class="active"><a href="music/new">Add Music</a></li>
+      <% if current_user %>
+        <li class="active"><a href="/logout">Log Out</a></li>
+      <% else %>
+        <li class="active"><a href="/login">Log In</a></li>        
+      <% end %>
+      <li class="active"><a href="/signup">Sign Up</a></li>
     </ul>
   </section>
 </nav>
-
-
 
 
 <div class="details">
   <h2><%= @music.song_title%></h2>
   <br>
   <p>
-    Submitted by: <%= @music.author %>
+    Author: <%= @music.author %>
   </p>
   <p>
     URL: <%= @music.url %>
@@ -29,5 +35,30 @@
   <p>
     Created at: <%= @music.created_at %>
   </p>
+
+ 
+  <p>
+    Submitted by: 
+      <% if @user.id == nil %>
+        <%= "anonymous" %>
+      <% else %>
+      <strong><%= @user.id %></strong>
+      <% end %>
+
+  </p>
+
+
+
+<form action="/music/<%= @music.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete this post">
+
+</form>
+  <p><em>Other posts by this author:</em></p>
+  <% @music_by_author.each do |music| %>
+  <% unless music.song_title == @music.song_title %>
+    <p><strong><%= music.song_title %></strong></p>
+    <% end %>
+  <% end %>
 </div>
 

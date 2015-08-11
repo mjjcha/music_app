@@ -1,7 +1,10 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="/">Music</a></h1>
+      
+        <h1><a href="/">Music</a></h1>
+    
+     
     </li>
   </ul>
 
@@ -21,11 +24,5 @@
   </section>
 </nav>
 
-<div id="list">
-  <% @music.each do |music| %>
-    <a href="/music/<%= music.id %>"><h4><%= music.author %></h4></a>
-    <p><%= music.song_title %><p>
-    <p><%= music.url %></p>
-  <% end %>
-</div>
-
+<P><%= current_user.email %></P>
+<p><%= current_user.password%></p>
