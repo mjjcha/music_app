@@ -12,10 +12,8 @@ gem 'json'
 gem 'puma'
 gem 'tux'
 gem 'faker'
-gem 'pg'
 
 group :development, :test do
-  gem 'pry'
   gem 'shotgun'
 end
 
