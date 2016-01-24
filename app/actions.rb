@@ -10,8 +10,8 @@ before do
 end
 
 get '/' do
-  @music = Music.last
-  erb :index
+  @music = Music.all.order("created_at DESC")
+  erb :'/music/index'
 end
 
 get '/login' do
@@ -39,7 +39,7 @@ end
 
 post '/' do
   @music = Music.new(
-      author: params[:author],
+      artist: params[:artist],
       title: params[:title],
       album: params[:album]
   )
@@ -51,10 +51,8 @@ post '/' do
 end
 
 post '/login' do
-  email = params[:email]
   password = params[:password]
-
-  user = User.find_by(email: email)
+  user = User.find_by(email: params[:email])
   if user.password == password
     session[:user_id] = user.id
     session[:notice] = "You are now logged in"
@@ -89,12 +87,12 @@ end
 
 post '/music' do
   @music = Music.new(
-      author: params[:author],
-      song_title: params[:song_title],
-      url: params[:url],
+      artist: params[:artist],
+      title: params[:title],
+      album: params[:album],
       user_id: params[:user_id]
   )
-  
+
   if @music.save
     @music.user_id = @current_user.id
     @music.save
@@ -105,10 +103,9 @@ post '/music' do
 end
 
 get '/music/:id' do
-  @music = Music.find params[:id]
-  @music_by_author = Music.where("author=?",@music.author)
-  @user = User.where("id=?", @music.user_id)
-  binding.pry
+  @music = Music.find(params[:id])
+  @music_by_author = Music.where("user_id=?",@music.user_id)
+  @user = User.find_by(id: @music.user_id)
   erb :'music/show'
 end
 
@@ -118,7 +115,4 @@ delete '/music/:id' do
   redirect to '/music'
 end
 
-# looking for vote where user_id == w/e user.id we pass in, and where musics.id === w/e musics.id we pass in 
-
-
-
+# looking for vote where user_id == w/e user.id we pass in, and where musics.id === w/e musics.id we pass in

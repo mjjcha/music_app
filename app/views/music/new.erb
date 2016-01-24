@@ -1,26 +1,3 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">Music</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="active"><a href="/music">Music List</a></li>
-      <li class="active"><a href="/music/new">Add Music</a></li>
-    </ul>
-    <ul class="right">
-      <% if current_user %>
-        <li class="active"><a href="/logout">Log Out</a></li>
-      <% else %>
-        <li class="active"><a href="/login">Log In</a></li>        
-      <% end %>
-      <li class="active"><a href="/signup">Sign Up</a></li>
-    </ul>
-  </section>
-</nav>
-
 <% if @music && @music.errors.any? %>
   <div>
     <strong>Some issues with your message, please fix them:</strong>
@@ -33,32 +10,35 @@
 
 <% end %>
 
-<h2>Add some new music to the list!</h2>
+<div class="text-center">
+  <h2>Add some new music to the list!</h2>
 
-<form class="form" method="post" action="/music"> 
-  <div class="row">
+  <form class="form" method="post" action="/music">
+    <div class="row">
 
-    <div class="large-9 columns">
-      <label name="author">Author</label>
-      <input type="text" name="author" placeholder="Your name" value="<%= @music && @music.author %>">
+      <div class="small-8 small-offset-2 columns">
+        <label name="artist">Artist</label>
+        <input type="text" name="artist" placeholder="Your favourite artist" value="<%= @music && @music.artist %>">
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="large-9 columns">
-      <label name="song_title">Song Title</label>
-      <input type="text" name="song_title" placeholder="Your favourite song" value="<%= @music && @music.title %>">
+    <div class="row">
+      <div class="small-8 small-offset-2 columns">
+        <label name="title">Title</label>
+        <input type="text" name="title" placeholder="Your favourite song" value="<%= @music && @music.title %>">
+      </div>
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="large-9 columns">
-      <label name="url">Album</label>
-      <input type="text" name="url" placeholder="Add an URL of your choice" value="<%= @music && @music.album %>">
-    </div>
-  </div>
 
-  <div>
-    <input type="submit" value="Submit" >
-  </div>
-</form>
+    <div class="row">
+      <div class="small-8 small-offset-2 columns">
+        <label name="album">Album</label>
+        <input type="text" name="album" placeholder="Add an album of your choice" value="<%= @music && @music.album %>">
+      </div>
+    </div>
+
+    <div>
+      <input type="submit" value="Submit" >
+    </div>
+  </form>
+
+</div>

@@ -1,28 +1,21 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      
-        <h1><a href="/">Music</a></h1>
-    
-     
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="active"><a href="/music">Music List</a></li>
-      <li class="active"><a href="/music/new">Add Music</a></li>
-    </ul>
-    <ul class="right">
-      <% if current_user %>
-        <li class="active"><a href="/logout">Log Out</a></li>
-      <% else %>
-        <li class="active"><a href="/login">Log In</a></li>        
-      <% end %>
-      <li class="active"><a href="/signup">Sign Up</a></li>
-    </ul>
-  </section>
-</nav>
-
-<P><%= current_user.email %></P>
-<p><%= current_user.password%></p>
+<p class="session-notice"><%= session[:notice] %></p>
+<div class ="row">
+  <div class="text-center">
+    <table>
+      <thead>
+        <td col="2">Your Information</td>
+        <td></td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Email</td>
+          <td><%= current_user.email %></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><%= current_user.password%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,48 +1,24 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">Music</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="active"><a href="/music">Music List</a></li>
-      <li class="active"><a href="/music/new">Add Music</a></li>
-    </ul>
-    <ul class="right">
-      <% if current_user %>
-        <li class="active"><a href="/logout">Log Out</a></li>
-      <% else %>
-        <li class="active"><a href="/login">Log In</a></li>        
-      <% end %>
-      <li class="active"><a href="/signup">Sign Up</a></li>
-    </ul>
-  </section>
-</nav>
-
-
 <div class="details">
-  <h2><%= @music.song_title%></h2>
+  <h2><%= @music.title%></h2>
   <br>
   <p>
-    Author: <%= @music.author %>
+    Artist: <%= @music.artist %>
   </p>
   <p>
-    URL: <%= @music.url %>
+    album: <%= @music.album %>
   </p>
 
   <p>
     Created at: <%= @music.created_at %>
   </p>
 
- 
+
   <p>
-    Submitted by: 
-      <% if @user.id == nil %>
+    Submitted by:
+      <% if @user.id == nil || @user.name == nil%>
         <%= "anonymous" %>
       <% else %>
-      <strong><%= @user.id %></strong>
+      <strong><%= @user.name %></strong>
       <% end %>
 
   </p>
@@ -54,11 +30,10 @@
   <input type="submit" value="Delete this post">
 
 </form>
-  <p><em>Other posts by this author:</em></p>
+  <p><em>Other posts by this user:</em></p>
   <% @music_by_author.each do |music| %>
-  <% unless music.song_title == @music.song_title %>
-    <p><strong><%= music.song_title %></strong></p>
+  <% unless music.title == @music.title %>
+    <p><strong><%= music.title %></strong></p>
     <% end %>
   <% end %>
 </div>
-

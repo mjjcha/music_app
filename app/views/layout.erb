@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
+
   <link rel="stylesheet" href="/stylesheets/normalize.css">
   <link rel="stylesheet" href="/stylesheets/foundation.css">
-  <!--
-    application.css is where you put your styles
-  -->
   <link rel="stylesheet" href="/stylesheets/application.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
-  
+
   <title></title>
 </head>
 <body>
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/">Music</a></h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="active"><a href="/music">Music List</a></li>
+        <li class="active"><a href="/music/new">Add Music</a></li>
+      </ul>
+      <ul class="right">
+        <% if current_user %>
+          <li class="active"><a href="/logout">Log Out</a></li>
+        <% else %>
+          <li class="active"><a href="/login">Log In</a></li>
+        <% end %>
+        <li class="active"><a href="/signup">Sign Up</a></li>
+      </ul>
+    </section>
+  </nav>
+  <div class = "small-8 small-offset-2 columns">
   <%= yield %>
+  </div>
 </body>
 </html>

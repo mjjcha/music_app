@@ -1,31 +1,9 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">Music</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="active"><a href="/music">Music List</a></li>
-      <li class="active"><a href="/music/new">Add Music</a></li>
-    </ul>
-    <ul class="right">
-      <% if current_user %>
-        <li class="active"><a href="/logout">Log Out</a></li>
-      <% else %>
-        <li class="active"><a href="/login">Log In</a></li>        
-      <% end %>
-      <li class="active"><a href="/signup">Sign Up</a></li>
-    </ul>
-  </section>
-</nav>
-
 <div id="list">
   <% @music.each do |music| %>
-    <a href="/music/<%= music.id %>"><h4><%= music.author %></h4></a>
-    <p><%= music.song_title %><p>
-    <p><%= music.url %></p>
+  <a href="/music/<%= music.id %>">
+    <h4><%= music.artist %></h4>
+    <span><%= music.title %></span>
+    <p><%= music.album %></p>
+  </a>
   <% end %>
 </div>
-

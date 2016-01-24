@@ -1,28 +1,5 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="/">Music</a></h1>
-    </li>
-  </ul>
-
-  <section class="top-bar-section">
-    <ul class="right">
-      <li class="active"><a href="/music">Music List</a></li>
-      <li class="active"><a href="/music/new">Add Music</a></li>
-    </ul>
-    <ul class="left">
-      <% if current_user %>
-        <li class="active"><a href="/logout">Log Out</a></li>
-      <% else %>
-        <li class="active"><a href="/login">Log In</a></li>        
-      <% end %>
-      <li class="active"><a href="/signup">Sign Up</a></li>
-    </ul>
-  </section>
-</nav>
-
 <form class="form" method="POST" action="/signup">
-  <div class="row">Sign Up</div> 
+  <div class="row">Sign Up</div>
   <div class="row">
     <div class="medium-offset-4 medium-4 columns">
       <label name="email"></label>
@@ -36,7 +13,7 @@
       <input type="password" name="password" placeholder="Password">
     </div>
   </div>
-  
+
    <div>
     <input type="submit" value="Sign Up">
   </div>
